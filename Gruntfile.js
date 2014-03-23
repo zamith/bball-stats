@@ -33,6 +33,14 @@ module.exports = function (grunt) {
 		},
 
         watch: {
+            coffee: {
+                    files: ['<%%= yeoman.app %>/scripts/{,*/}*.{coffee,litcoffee,coffee.md}'],
+                    tasks: ['newer:coffee:dist']
+                  },
+                  coffeeTest: {
+                    files: ['test/spec/{,*/}*.{coffee,litcoffee,coffee.md}'],
+                    tasks: ['newer:coffee:test', 'karma']
+                  },
             compass: {
                 files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
                 tasks: ['compass:server', 'autoprefixer']
@@ -52,6 +60,33 @@ module.exports = function (grunt) {
                     '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
                 ]
             }
+        },
+        compass: {
+          options: {
+            sassDir: '<%= yeoman.app %>/styles',
+            cssDir: '.tmp/styles',
+            generatedImagesDir: '.tmp/images/generated',
+            imagesDir: '<%= yeoman.app %>/images',
+            javascriptsDir: '<%= yeoman.app %>/scripts',
+            fontsDir: '<%= yeoman.app %>/styles/fonts',
+            importPath: '<%= yeoman.app %>/bower_components',
+            httpImagesPath: '/images',
+            httpGeneratedImagesPath: '/images/generated',
+            httpFontsPath: '/styles/fonts',
+            relativeAssets: false,
+            assetCacheBuster: false,
+            raw: 'Sass::Script::Number.precision = 10\n'
+          },
+          dist: {
+            options: {
+              generatedImagesDir: '<%= yeoman.dist %>/images/generated'
+            }
+          },
+          server: {
+            options: {
+              debugInfo: true
+            }
+          }
         },
         connect: {
             options: {
@@ -98,17 +133,6 @@ module.exports = function (grunt) {
             },
             server: '.tmp'
         },
-        jshint: {
-            options: {
-                jshintrc: '.jshintrc'
-            },
-            all: [
-                'Gruntfile.js',
-                '<%= yeoman.app %>/scripts/{,*/}*.js',
-                '!<%= yeoman.app %>/scripts/vendor/*',
-                'test/spec/{,*/}*.js'
-            ]
-        },
 		karma: {
 			options: {
 				files: ['test/**/*.js']
@@ -149,6 +173,30 @@ module.exports = function (grunt) {
                 html: '<%= yeoman.app %>/index.html',
                 ignorePath: '<%= yeoman.app %>/'
             }
+        },
+        coffee: {
+          options: {
+            sourceMap: true,
+            sourceRoot: ''
+          },
+          dist: {
+            files: [{
+              expand: true,
+              cwd: '<%= yeoman.app %>/scripts',
+              src: '{,*/}*.coffee',
+              dest: '.tmp/scripts',
+              ext: '.js'
+            }]
+          },
+          test: {
+            files: [{
+              expand: true,
+              cwd: 'test/spec',
+              src: '{,*/}*.coffee',
+              dest: '.tmp/spec',
+              ext: '.js'
+            }]
+          }
         },
         // not enabled since usemin task does concat and uglify
         // check index.html to edit your build targets
@@ -265,12 +313,18 @@ module.exports = function (grunt) {
         },
         concurrent: {
             server: [
+                'coffee:dist',
+                'compass:server',
                 'copy:styles'
             ],
             test: [
+                'coffee',
+                'compass',
                 'copy:styles'
             ],
             dist: [
+                'coffee',
+                'compass:dist',
                 'copy:styles',
                 'imagemin',
                 'svgmin',
@@ -320,7 +374,6 @@ module.exports = function (grunt) {
 	]);
 
     grunt.registerTask('default', [
-        'jshint',
         'test',
         'build'
     ]);

@@ -5,6 +5,7 @@ phonegap/
 dist/
 .cordova
 .tmp
+.sass-cache
 
 # Compiled source #
 ###################
