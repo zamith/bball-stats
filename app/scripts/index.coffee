@@ -1,6 +1,6 @@
 'use strict'
 # global window
-window.app =
+window.phonegap =
     # Application Constructor
 		initialize: ->
 			@bindEvents()
@@ -9,8 +9,11 @@ window.app =
 			document.addEventListener('deviceready', @onDeviceReady, false)
 
 		onDeviceReady: ->
-			window.app.receivedEvent('deviceready')
+			@receivedEvent('deviceready')
 
 		receivedEvent: (id) ->
+		  console.log "Phonegap initializing..."
 
-window.app.initialize()
+window.phonegap.initialize()
+
+window.app = angular.module("statsApp", [])

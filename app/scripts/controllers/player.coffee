@@ -1,4 +1,4 @@
-PlayerController = ($scope) ->
+@app.controller("PlayerController", ['$scope', ($scope) ->
   $scope.players = [
     { name: "zamith", number: "20" }
     { name: "ze", number: "23" }
@@ -8,6 +8,5 @@ PlayerController = ($scope) ->
     $scope.players.push
       name: $scope.playerName, number: $scope.playerNumber
     $scope.playerName = ''
+])
 
-angular.module("statsApp", [])
-  .controller("PlayerController", PlayerController)
