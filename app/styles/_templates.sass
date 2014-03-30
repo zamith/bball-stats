@@ -1,18 +1,28 @@
-$top-bar-height: 10px
-$sidebar-width: 300px
-$sidebar-bg-color: #ccc
-
 .sidebar,
-.content
-  margin-top: $top-bar-height
+.main-content
+  padding-top: $top-bar-height
 
 .sidebar
+  border-right: 1px solid $secondary-color
+  height: 100%
+  left: 0
   position: fixed
   top: 0
-  left: 0
   width: $sidebar-width
-  height: 100%
-  background-color: $sidebar-bg-color
 
-.content
+.main-content
   margin-left: $sidebar-width
+
+.vertical-list
+  > li:not(:last-child)
+    margin-bottom: $default-spacing / 2
+
+.card
+  padding: $default-spacing
+
+  h1
+    margin-bottom: $default-spacing
+
+.input-group
+  input:last-of-type
+    margin-bottom: $default-spacing

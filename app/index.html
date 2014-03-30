@@ -22,43 +22,58 @@
         <meta charset="utf-8">
         <meta name="format-detection" content="telephone=no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
+
+        <!-- Makes your prototype chrome-less once bookmarked to your phone's home screen -->
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
         <title>bball-stats</title>
+
         <!-- build:css(.tmp) styles/main.css -->
         <link rel="stylesheet" href="bower_components/normalize-css/normalize.css">
+        <link rel="stylesheet" href="bower_components/ratchet2/css/ratchet.css">
+        <link rel="stylesheet" href="bower_components/ratchet2/css/ratchet-theme-ios.css">
         <link rel="stylesheet" href="styles/application.css">
         <!-- endbuild -->
     </head>
     <body>
-        <div class="sidebar">
-          <nav>
-            <a href="#">Players</a>
-          </nav>
-        </div>
+      <div class="sidebar content">
+          <ul class="table-view">
+            <li class="table-view-cell">
+              <a class="navigate-right" href="#">
+                <strong>Players</strong>
+              </a>
+            </li>
+          </ul>
+      </div>
 
-        <div class="content">
-          <h1>Players</h1>
-          <div ng-controller="PlayerController">
-            <ul>
-              <li ng-repeat="player in players">
+      <div class="content main-content">
+        <div ng-controller="PlayerController">
+          <div class="card content-padded">
+            <h1>Players</h1>
+
+            <ul class="vertical-list">
+              <li class="player" ng-repeat="player in $storage.players">
                 <span ng-bind="player.name"></span>
-                <span ng-bind="player.number"></span>
+                <span class="jersey-number" ng-bind="player.number"></span>
               </li>
             </ul>
-
-            <form ng-submit="addPlayer()">
-              <label for="playerName">Name:</label>
-              <input id="playerName" type="text" ng-model="playerName">
-              <label for="playerNumber">Number:</label>
-              <input id="playerNumber" type="number" max="99" value="10" ng-model="playerNumber">
-              <input type="submit" value="Done">
-            </form>
           </div>
+
+          <form class="input-group card" ng-submit="addPlayer()">
+            <input id="playerName" type="text" placeholder="Full name" ng-model="playerName">
+            <input id="playerNumber" type="number" placeholder="Jersey number" max="99" value="10" ng-model="playerNumber">
+            <button type="submit" class="btn btn-positive">Add Player</button>
+          </form>
         </div>
+      </div>
 
         <script type="text/javascript" src="cordova.js"></script>
 
         <!-- build:js scripts/lib.js -->
         <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+        <script type="text/javascript" src="bower_components/ngStorage/ngStorage.js"></script>
+        <script type="text/javascript" src="bower_components/ratchet2/js/ratchet.js"></script>
         <!-- endbuild -->
 
         <!-- build:js(.tmp) scripts/main.js -->

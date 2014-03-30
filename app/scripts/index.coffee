@@ -1,19 +1,19 @@
 'use strict'
-# global window
 window.phonegap =
-    # Application Constructor
-		initialize: ->
-			@bindEvents()
+    initialize: ->
+      @bindEvents()
 
-		bindEvents: ->
-			document.addEventListener('deviceready', @onDeviceReady, false)
+    bindEvents: ->
+      document.addEventListener('deviceready', @onDeviceReady, false)
 
-		onDeviceReady: ->
-			@receivedEvent('deviceready')
+    onDeviceReady: ->
+      @receivedEvent('deviceready')
 
-		receivedEvent: (id) ->
-		  console.log "Phonegap initializing..."
+    receivedEvent: (id) ->
+      console.log "Phonegap initializing..."
 
 window.phonegap.initialize()
 
-window.app = angular.module("statsApp", [])
+window.app = angular.module("statsApp", [
+  "ngStorage"
+])
