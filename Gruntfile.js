@@ -12,6 +12,7 @@ module.exports = function (grunt) {
 	require('time-grunt')(grunt);
 	// load all grunt tasks
 	require('load-grunt-tasks')(grunt);
+  grunt.loadNpmTasks('grunt-newer');
 
 	grunt.initConfig({
 		// configurable paths
