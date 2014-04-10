@@ -1,9 +1,6 @@
-@app.controller("PlayerController", ['$scope', '$localStorage', ($scope, $localStorage) ->
-  $scope.$storage = $localStorage.$default
-    players: []
-
+@app.controller("PlayerController", ['$scope', 'players', ($scope, players) ->
   $scope.addPlayer = ->
-    $scope.$storage.players.push
+    players.add
       name: $scope.playerName, number: $scope.playerNumber
     $scope.playerName = ''
 ])

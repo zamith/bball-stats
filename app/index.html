@@ -56,7 +56,7 @@
             <h1>Players</h1>
 
             <ul class="vertical-list">
-              <li class="player" ng-repeat="player in $storage.players">
+              <li class="player" ng-repeat="player in players.all">
                 <span ng-bind="player.name"></span>
                 <span class="jersey-number" ng-bind="player.number"></span>
               </li>
@@ -81,6 +81,7 @@
 
         <!-- build:js(.tmp) scripts/main.js -->
         <script src="scripts/index.js"></script>
+        <script src="scripts/services/players.js"></script>
         <script src="scripts/controllers/player.js"></script>
         <!-- endbuild -->
 </body>
