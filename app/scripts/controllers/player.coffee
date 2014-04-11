@@ -1,7 +1,12 @@
-@app.controller("PlayerController", ['$scope', 'players', ($scope, players) ->
+@app.controller("PlayerController", ['$scope', 'PlayersService', ($scope, PlayersService) ->
+  $scope.players = PlayersService
+
   $scope.addPlayer = ->
-    players.add
+    $scope.players.add
       name: $scope.playerName, number: $scope.playerNumber
     $scope.playerName = ''
+
+  $scope.removePlayer = (index) ->
+    $scope.players.remove(index)
 ])
 

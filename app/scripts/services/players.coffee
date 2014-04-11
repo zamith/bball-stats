@@ -1,16 +1,20 @@
-@app.factory('players', ['$rootScope', '$localStorage', ($rootScope, $localStorage) ->
-  $rootScope.$storage = $localStorage.default
+@app.factory('PlayersService', ['$rootScope', '$localStorage', ($rootScope, $localStorage) ->
+  storage = $localStorage.$default
     players: []
 
   add = (player) ->
-    $rootScope.$storage.players.push(player)
+    storage.players.push(player)
 
   all = ->
-    $rootScope.$storage.players
+    storage.players
+
+  remove = (index) ->
+    storage.players.splice(index, 1)
 
   return {
     add: add
     , all: all
+    , remove: remove
   }
 ])
 

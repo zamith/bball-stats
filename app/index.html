@@ -56,9 +56,10 @@
             <h1>Players</h1>
 
             <ul class="vertical-list">
-              <li class="player" ng-repeat="player in players.all">
+              <li class="player" ng-repeat="player in players.all()">
                 <span ng-bind="player.name"></span>
                 <span class="jersey-number" ng-bind="player.number"></span>
+                <span ng-click="removePlayer($index)">X</span>
               </li>
             </ul>
           </div>
