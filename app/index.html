@@ -43,47 +43,36 @@
       <div class="sidebar content">
           <ul class="table-view">
             <li class="table-view-cell">
-              <a class="navigate-right" href="#">
+              <a class="navigate-right" href="/">
                 <strong>Players</strong>
               </a>
             </li>
           </ul>
       </div>
 
-      <div class="content main-content">
-        <div ng-controller="PlayerController">
-          <div class="card content-padded">
-            <h1>Players</h1>
-
-            <ul class="vertical-list">
-              <li class="player" ng-repeat="player in players.all()">
-                <span ng-bind="player.name"></span>
-                <span class="jersey-number" ng-bind="player.number"></span>
-                <span ng-click="removePlayer($index)">X</span>
-              </li>
-            </ul>
-          </div>
-
-          <form class="input-group card" ng-submit="addPlayer()">
-            <input id="playerName" type="text" placeholder="Full name" ng-model="playerName">
-            <input id="playerNumber" type="number" placeholder="Jersey number" max="99" value="10" ng-model="playerNumber">
-            <button type="submit" class="btn btn-positive">Add Player</button>
-          </form>
-        </div>
+      <div ng-controller="MainController" class="content main-content">
+        <pre>$location.path() = {{$location.path()}}</pre>
+        <pre>$route.current.templateUrl = {{$route.current.templateUrl}}</pre>
+        <pre>$route.current.params = {{$route.current.params}}</pre>
+        <pre>$route.current.scope.name = {{$route.current.scope.name}}</pre>
+        <pre>$routeParams = {{$routeParams}}</pre>
       </div>
 
-        <script type="text/javascript" src="cordova.js"></script>
+      <script type="text/javascript" src="cordova.js"></script>
 
-        <!-- build:js scripts/lib.js -->
-        <script type="text/javascript" src="bower_components/angular/angular.js"></script>
-        <script type="text/javascript" src="bower_components/ngStorage/ngStorage.js"></script>
-        <script type="text/javascript" src="bower_components/ratchet2/js/ratchet.js"></script>
-        <!-- endbuild -->
+      <!-- build:js scripts/lib.js -->
+      <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+      <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+      <script type="text/javascript" src="bower_components/ngStorage/ngStorage.js"></script>
+      <script type="text/javascript" src="bower_components/ratchet2/js/ratchet.js"></script>
+      <!-- endbuild -->
 
-        <!-- build:js(.tmp) scripts/main.js -->
-        <script src="scripts/index.js"></script>
-        <script src="scripts/services/players.js"></script>
-        <script src="scripts/controllers/player.js"></script>
-        <!-- endbuild -->
+      <!-- build:js(.tmp) scripts/main.js -->
+      <script src="scripts/index.js"></script>
+      <script src="scripts/router.js"></script>
+      <script src="scripts/services/players.js"></script>
+      <script src="scripts/controllers/main.js"></script>
+      <script src="scripts/controllers/player.js"></script>
+      <!-- endbuild -->
 </body>
 </html>

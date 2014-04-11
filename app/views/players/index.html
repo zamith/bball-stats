@@ -1,0 +1,17 @@
+<div class="card content-padded">
+  <h1>Players</h1>
+
+  <ul class="vertical-list">
+    <li class="player" ng-repeat="player in players.all()">
+      <span ng-bind="player.name"></span>
+      <span class="jersey-number" ng-bind="player.number"></span>
+      <span ng-click="removePlayer($index)">X</span>
+    </li>
+  </ul>
+</div>
+
+<form class="input-group card" ng-submit="addPlayer()">
+  <input id="playerName" type="text" placeholder="Full name" ng-model="playerName">
+  <input id="playerNumber" type="number" placeholder="Jersey number" max="99" value="10" ng-model="playerNumber">
+  <button type="submit" class="btn btn-positive">Add Player</button>
+</form>
