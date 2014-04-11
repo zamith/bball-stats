@@ -50,13 +50,7 @@
           </ul>
       </div>
 
-      <div ng-controller="MainController" class="content main-content">
-        <pre>$location.path() = {{$location.path()}}</pre>
-        <pre>$route.current.templateUrl = {{$route.current.templateUrl}}</pre>
-        <pre>$route.current.params = {{$route.current.params}}</pre>
-        <pre>$route.current.scope.name = {{$route.current.scope.name}}</pre>
-        <pre>$routeParams = {{$routeParams}}</pre>
-      </div>
+      <div ng-view class="content main-content"></div>
 
       <script type="text/javascript" src="cordova.js"></script>
 
@@ -69,10 +63,9 @@
 
       <!-- build:js(.tmp) scripts/main.js -->
       <script src="scripts/index.js"></script>
-      <script src="scripts/router.js"></script>
       <script src="scripts/services/players.js"></script>
-      <script src="scripts/controllers/main.js"></script>
       <script src="scripts/controllers/player.js"></script>
+      <script src="scripts/router.js"></script>
       <!-- endbuild -->
 </body>
 </html>

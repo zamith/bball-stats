@@ -1,4 +1,4 @@
-@app.controller("PlayerController", ['$scope', 'PlayersService', ($scope, PlayersService) ->
+@app.controller("PlayersController", ['$scope', 'PlayersService', ($scope, PlayersService) ->
   $scope.players = PlayersService
 
   $scope.addPlayer = ->
