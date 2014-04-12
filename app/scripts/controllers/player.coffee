@@ -9,4 +9,3 @@
   $scope.removePlayer = (index) ->
     $scope.players.remove(index)
 ])
-
